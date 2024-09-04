@@ -30,8 +30,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        screen.fill(black)
-        player.draw(screen)
+        screen.fill(black) # fill the screen with black
+        player.update(dt)
+        player.draw(screen) # render player on the scrren
         pygame.display.flip()
         dt = clock.tick(60)/1000 #limit FPS to 60 and store time since last frame in dt in seconds
 
