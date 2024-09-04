@@ -1,13 +1,22 @@
 import pygame
 
 from constants import *
+from player import *
 
 def main():
     pygame.init()
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
+
+    # The center of the screen:
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
     
+    #create a player
+    player = Player(x, y, 15)
+
+    #setting the window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     #RGB colours
@@ -23,6 +32,7 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill(black)
+        player.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60)/1000 #limit FPS to 60 and store time since last frame in dt in seconds
 
