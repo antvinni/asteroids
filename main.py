@@ -1,5 +1,4 @@
 import pygame
-
 from constants import *
 from player import *
 
@@ -14,7 +13,7 @@ def main():
     y = SCREEN_HEIGHT / 2
     
     #create a player
-    player = Player(x, y, 15)
+    player = Player(x, y, PLAYER_RADIUS)
 
     #setting the window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
