@@ -58,12 +58,16 @@ def main():
             if obj.is_collided(player):
                 print("Game over!")
                 sys.exit()
+            for bullet in shots:
+                if obj.is_collided(bullet):
+                    obj.kill()
+                    bullet.kill()
         
         for obj in drawable:
             obj.draw(screen) # render drawable on the scrren
         
         pygame.display.flip()
-        
+
         dt = clock.tick(60)/1000 #limit FPS to 60 and store time since last frame in dt in seconds
 
 if __name__ == "__main__":
