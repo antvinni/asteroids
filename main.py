@@ -72,6 +72,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-######I don't know why VS code doesn't pick up pygame module###
