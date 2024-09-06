@@ -63,6 +63,7 @@ def main():
                 
                 #Game over:
                 if player.num_lifes == 0:
+                    print(f"Your score is {player.score}!")
                     print("Game over!")
                     sys.exit()
 
@@ -70,6 +71,7 @@ def main():
                 if asteroid.is_collided(shot):
                     asteroid.split()
                     shot.kill()
+                    player.score += 10
         
         for obj in drawable:
             obj.draw(screen) # render drawable on the scrren
