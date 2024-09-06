@@ -64,11 +64,14 @@ def main():
                 #Game over:
                 if player.num_lifes == 0:
                     print(f"Your score is {player.score}!")
+                    with open('scores.txt', 'a') as file:
+                        file.write(f"Player score is {player.score}\n")
+                        print("Your score is recored in scores.txt")
                     print("Game over!")
                     sys.exit()
 
             for shot in shots:
-                if asteroid.is_collided(shot):
+                if asteroid.is_collided(shot): 
                     asteroid.split()
                     shot.kill()
                     player.score += 10
