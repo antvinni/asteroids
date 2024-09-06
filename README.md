@@ -1,6 +1,8 @@
 # asteroids
 This is asteroids game.
 
+RUN:
+
 To launch the game you need to install
 
 * python3
@@ -9,6 +11,7 @@ To launch the game you need to install
 then simply run python3 main.py
 
 Controls:
+
 -- wasd or arrows to move
 -- spacebar to shoot
 
