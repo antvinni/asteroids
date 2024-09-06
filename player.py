@@ -8,6 +8,7 @@ class Player(CircleShape):
         super().__init__(x, y, radius)
         self.rotation = 0
         self.shoot_timer = 0
+        self.num_lifes = PLAYER_NUM_LIFES
 
     #make a player look like triangle (though hitbox remains to be a circle)
     def triangle(self):
