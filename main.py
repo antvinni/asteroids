@@ -1,3 +1,4 @@
+import time
 import pygame
 import sys
 from constants import *
@@ -5,6 +6,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
+from gameover import game_over_screen, restart_game
 
 def main():
     
@@ -14,6 +16,10 @@ def main():
 
     #setting the window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    #setting fonts
+    font = pygame.font.Font(None, 74)
+    small_font = pygame.font.Font(None, 36)
     
     #Game groups
     updatable = pygame.sprite.Group()
@@ -61,13 +67,24 @@ def main():
                 
                 #Game over:
                 if player.num_lifes == 0:
+                    
+                    #Record Player's score to file
                     print(f"Your score is {player.score}!")
                     with open('scores.txt', 'a') as file:
                         file.write(f"Player score is {player.score}\n")
                         print("Your score is recored in scores.txt")
-                    print("Game over!")
+                    
+                    #Gameover and retry calls
+                    game_over_screen(screen)
+                    time.sleep(10)
                     sys.exit()
-            
+                    """
+                    keys = pygame.key.get_pressed()
+                    if keys[pygame.K_r]:
+                        restart_game()
+                    if keys[pygame.K_q]:
+                        sys.exit()
+                    """
             #Shooting
             for shot in shots:
                 if asteroid.is_collided(shot): 
@@ -78,6 +95,10 @@ def main():
         #Draw all drawable objects to the game screen
         for obj in drawable:
             obj.draw(screen) 
+        
+        # Draw player lives on screen
+        lives_text = small_font.render(f"Lives: {player.num_lifes}", True, "white")
+        screen.blit(lives_text, (10, 10))
         
         #Update the display
         pygame.display.flip()
