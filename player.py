@@ -10,6 +10,7 @@ class Player(CircleShape):
         self.shoot_timer = 0
         self.num_lifes = PLAYER_NUM_LIFES
         self.score = 0
+        self.forward = True 
 
     #make a player look like triangle (though hitbox remains to be a circle)
     def triangle(self):
@@ -28,8 +29,20 @@ class Player(CircleShape):
         self.rotation += PLAYER_TURN_SPEED * dt
     
     def update(self, dt):
-        keys = pygame.key.get_pressed()
+        
+        #Shooting Cooldown timer
         self.shoot_timer -= dt
+
+        #Player's inertia and drag
+        self.velocity *= 0.98
+        if self.forward == True:
+            self.position += self.velocity * dt
+        else:
+            self.position += self.velocity * -dt
+        #Player Actions
+        
+        keys = pygame.key.get_pressed()
+        
 
         if keys[pygame.K_a] or keys[pygame.K_LEFT]:
             self.rotate(-dt)
@@ -37,14 +50,17 @@ class Player(CircleShape):
             self.rotate(dt)
         if keys[pygame.K_w] or keys[pygame.K_UP]:
             self.move(dt)
+            self.forward = True
         if keys[pygame.K_s] or keys[pygame.K_DOWN]:
             self.move(-dt)
+            self.forward = False
         if keys[pygame.K_SPACE]:
             self.shoot()
 
     def move(self, dt):
-        forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        self.position += forward * PLAYER_SPEED * dt
+        self.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_START_SPEED
+        self.position += self.velocity * dt
+        
 
     def shoot(self):
         if self.shoot_timer > 0:
