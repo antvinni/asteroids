@@ -49,8 +49,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
-        #Screen background
-        screen.fill('black') 
+        ###Background###
+        image = pygame.image.load('space_darker.jpg')
+        # Resize the image to fit the screen
+        image = pygame.transform.scale(image, (SCREEN_WIDTH, SCREEN_HEIGHT))
+        # Fill the screen with the image
+        screen.blit(image, (0, 0))
         
         #Update game objects
         for obj in updatable:

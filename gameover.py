@@ -7,7 +7,13 @@ def game_over_screen(screen):
     font = pygame.font.Font('PressStart2P-Regular.ttf', 74)
     small_font = pygame.font.Font('PressStart2P-Regular.ttf', 30)
     
-    screen.fill("black")
+    ###Background###
+    image = pygame.image.load('space.jpg')
+    # Resize the image to fit the screen
+    image = pygame.transform.scale(image, (SCREEN_WIDTH, SCREEN_HEIGHT))
+    # Fill the screen with the image
+    screen.blit(image, (0, 0))
+    
     game_over_text = font.render("Game Over", True, "white")
     retry_text = small_font.render("Press 'R' to Retry or 'Q' to Quit", True, "white")
 
