@@ -18,8 +18,8 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     #setting fonts
-    font = pygame.font.Font(None, 74)
-    small_font = pygame.font.Font(None, 36)
+    font = pygame.font.Font('PressStart2P-Regular.ttf', 74)
+    small_font = pygame.font.Font('PressStart2P-Regular.ttf', 30)
     
     #Game groups
     updatable = pygame.sprite.Group()
