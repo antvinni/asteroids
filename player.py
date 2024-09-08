@@ -34,7 +34,7 @@ class Player(CircleShape):
         self.shoot_timer -= dt
 
         #Player's inertia and drag
-        self.velocity *= 0.98
+        self.velocity *= PLAYER_FRICTION
         if self.forward == True:
             self.position += self.velocity * dt
         else:
