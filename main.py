@@ -75,8 +75,9 @@ def main():
                     shot.kill()
                     player.score += 10
         
+        #Draw all drawable objects to the game screen
         for obj in drawable:
-            obj.draw(screen) # render drawable on the scrren
+            obj.draw(screen) 
         
         #Update the display
         pygame.display.flip()
