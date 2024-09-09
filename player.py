@@ -1,3 +1,4 @@
+import random
 import pygame
 from constants import *
 from circleshape import CircleShape
@@ -21,9 +22,42 @@ class Player(CircleShape):
         c = self.position - forward * self.radius + right
         return [a, b, c]
     
+    def rocket(self):
+        # Forward direction based on the player's rotation
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)  # Forward vector
+        right = pygame.Vector2(1, 0).rotate(self.rotation) * self.radius / 2  # Right vector for width
+
+        # Rocket body vertices
+        nose = self.position + forward * self.radius  # Nose of the rocket
+        left_fin = self.position - forward * self.radius + right * 1.5  # Left fin base
+        right_fin = self.position - forward * self.radius - right * 1.5  # Right fin base
+        tail_left = self.position + right  # Tail left corner
+        tail_right = self.position - right  # Tail right corner
+
+        # Return the vertices as a polygon
+        return [nose, left_fin, tail_left, tail_right, right_fin]
+    
+    def rocket_fire(self):
+        # Calculate bottom center of the rocket where fire will emit
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)  # Forward vector
+        right = pygame.Vector2(1, 0).rotate(self.rotation) * self.radius / 3  # Right vector for width
+        tail_center = self.position - forward * (self.radius + 5)  # Fire below the tail
+
+        # Fire flicker effect with random variation
+        fire_tip = tail_center - forward * random.randint(10, 20)
+        left_fire = tail_center + right
+        right_fire = tail_center - right
+
+        return [fire_tip, left_fire, right_fire]
+    
     def draw(self, screen):
-        pygame.draw.polygon(screen, "white", self.triangle(), 2)
+        #Draw the rocket
+        pygame.draw.polygon(screen, "white", self.rocket(), 2)
+        # Draw the rocket fire
+        pygame.draw.polygon(screen, "orange", self.rocket_fire())
         return super().draw(screen)
+    
+
     
     def rotate(self,dt):
         self.rotation += PLAYER_TURN_SPEED * dt

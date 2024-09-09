@@ -80,7 +80,7 @@ def main():
                     
                     #Gameover and retry calls
                     game_over_screen(screen)
-                    time.sleep(10)
+                    time.sleep(1)
                     sys.exit()
                     """
                     keys = pygame.key.get_pressed()
