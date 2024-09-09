@@ -94,7 +94,7 @@ def main():
                 if asteroid.is_collided(shot): 
                     asteroid.split()
                     shot.kill()
-                    player.score += 10
+                    player.score += 100 // asteroid.radius
         
         # Draw all drawable objects to the game screen
         for obj in drawable:
