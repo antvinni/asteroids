@@ -4,9 +4,8 @@
 4. add player's experience and levels
 5. add more guns
 6. record various game stats 
-and show them on the screen (asteroids kills, shots fired, accuracy, round time, etc)
-7. change how asteroids look like
-8. Add levels to the game. Increase speed.
-9. Add more asteroid types
-10. Add alien ships
- 
+7. display game stats on the screen (asteroids kills, shots fired, accuracy, round time, etc)
+8. change how asteroids look like
+9. Add levels to the game. Increase speed.
+10. Add more asteroid types
+11. Add alien ships
