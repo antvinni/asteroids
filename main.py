@@ -96,14 +96,18 @@ def main():
                     shot.kill()
                     player.score += 10
         
-        #Draw all drawable objects to the game screen
+        # Draw all drawable objects to the game screen
         for obj in drawable:
             obj.draw(screen) 
         
-        # Draw player lives on screen
+        # Draw player lives on the screen
         lives_text = small_font.render(f"Lives: {player.num_lifes}", True, "white")
         screen.blit(lives_text, (10, 10))
-        
+
+        # Draw player's score on the screen
+        score_text = small_font.render(f"Score: {player.score}", True, "white")
+        screen.blit(score_text, (10, 50))
+
         #Update the display
         pygame.display.flip()
         
