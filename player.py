@@ -104,4 +104,9 @@ class Player(CircleShape):
             shot = Shot(self.position.x, self.position.y)
             shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
         
-        
+    def record_score(self):
+        #Record Player's score to file
+        print(f"Your score is {self.score}!")
+        with open('scores.txt', 'a') as file:
+            file.write(f"Player score is {self.score}\n")
+            print("Your score is recored in scores.txt")

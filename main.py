@@ -73,10 +73,7 @@ def main():
                 if player.num_lifes == 0:
                     
                     #Record Player's score to file
-                    print(f"Your score is {player.score}!")
-                    with open('scores.txt', 'a') as file:
-                        file.write(f"Player score is {player.score}\n")
-                        print("Your score is recored in scores.txt")
+                    player.record_score()
                     
                     #Gameover and retry calls
                     game_over_screen(screen)
