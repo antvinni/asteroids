@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 
 # Function to handle game over screen
@@ -15,12 +16,13 @@ def game_over_screen(screen):
     screen.blit(image, (0, 0))
     
     game_over_text = font.render("Game Over", True, "white")
-    retry_text = small_font.render("Press 'R' to Retry or 'Q' to Quit", True, "white")
+    retry_text = small_font.render("Press 'R' to Retry", True, "white")
+    quit_text = small_font.render("Or any other key to Quit", True, "white")
 
     screen.blit(game_over_text, (SCREEN_WIDTH / 2 - 350, SCREEN_HEIGHT/3))
-    screen.blit(retry_text, (SCREEN_WIDTH / 2 - 500, SCREEN_HEIGHT/2))
+    screen.blit(retry_text, (SCREEN_WIDTH / 2 - 350, SCREEN_HEIGHT/2))
+    screen.blit(quit_text, (SCREEN_WIDTH / 2 - 350, SCREEN_HEIGHT/1.6))
     pygame.display.flip()
 
-# Function to restart the game
-def restart_game():
-    pass
+
+    

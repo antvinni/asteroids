@@ -7,8 +7,23 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
-from gameover import game_over_screen, restart_game
+from gameover import game_over_screen
 
+#wait for any key press
+def wait_for_key_press():
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                waiting = False  # Exit the loop on any key press
+
+# Function to restart the game
+def restart_game():
+    print("Game restarted")
+    
 def main():
     
     #Initialise the game
@@ -48,6 +63,8 @@ def main():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
                 return
         
         ###Background###
@@ -78,15 +95,17 @@ def main():
                     
                     #Gameover and retry calls
                     game_over_screen(screen)
-                    time.sleep(1)
-                    sys.exit()
-                    """
+                  
+                    wait_for_key_press()
                     keys = pygame.key.get_pressed()
                     if keys[pygame.K_r]:
-                        restart_game()
-                    if keys[pygame.K_q]:
+                        player.num_lifes = PLAYER_NUM_LIFES
+                        player.position = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+                        player.score = 0
+                    else:                  
+                        pygame.quit()
                         sys.exit()
-                    """
+                    
             #Shooting
             for shot in shots:
                 if asteroid.is_collided(shot): 
