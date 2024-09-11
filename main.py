@@ -3,6 +3,7 @@ import pygame
 import sys
 
 from constants import *
+from user_input_prompt import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -52,7 +53,7 @@ def main():
 
     #Create a player and spawn it to the center of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
-    
+    player.name = prompt_user_input(screen, "Enter your name: ")
     #Create asteroid field
     asteroidField = AsteroidField()
     
