@@ -1,5 +1,5 @@
-1. implement retry
-2. record player's name.
+1. implement retry - done
+2. record player's name - in progress
 3. maintain highscore
 4. add player's experience and levels
 5. add more guns

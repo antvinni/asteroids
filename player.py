@@ -5,13 +5,14 @@ from circleshape import CircleShape
 from shot import Shot
 
 class Player(CircleShape):
-    def __init__(self, x, y, radius):
+    def __init__(self, x, y, radius, name = "BoringPlayer"):
         super().__init__(x, y, radius)
         self.rotation = 0
         self.shoot_timer = 0
         self.num_lifes = PLAYER_NUM_LIFES
         self.score = 0
-        self.forward = True 
+        self.forward = True
+        self.name = name
 
     #make a player look like triangle (though hitbox remains to be a circle)
     def triangle(self):
@@ -108,5 +109,8 @@ class Player(CircleShape):
         #Record Player's score to file
         print(f"Your score is {self.score}!")
         with open('scores.txt', 'a') as file:
-            file.write(f"Player score is {self.score}\n")
+            file.write(f"{self.name} score is {self.score}\n")
             print("Your score is recored in scores.txt")
+
+    def set_name(self):
+        self.name = input("Enter your name: ")

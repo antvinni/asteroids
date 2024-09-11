@@ -32,6 +32,7 @@ def main():
 
     #setting the window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Asteroids Game. Beta")
 
     #setting fonts
     font = pygame.font.Font('PressStart2P-Regular.ttf', 74)

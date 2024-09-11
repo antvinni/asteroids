@@ -1,4 +1,4 @@
 venv/
 __pycache__/
 scores.txt
-test.py
+*test*
