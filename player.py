@@ -122,7 +122,7 @@ class Player(CircleShape):
                 file.write(f"{self.name} {self.score}\n")
             else:
                 current_score = int(content.split()[1])
-        if self.score > current_score:
-            file.seek(0)
-            file.write(f"{self.name} {self.score}\n")
-            file.truncate()  # Ensure any leftover content is removed
+            if self.score > current_score:
+                file.seek(0)
+                file.write(f"{self.name} {self.score}\n")
+                file.truncate()  # Ensure any leftover content is removed

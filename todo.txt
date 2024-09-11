@@ -1,6 +1,6 @@
 1. implement retry - done
 2. record player's name - done
-3. maintain highscore 
+3. maintain highscore - done
 4. add player's experience and levels
 5. add more guns
 6. record various game stats 
