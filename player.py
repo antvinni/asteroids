@@ -54,9 +54,11 @@ class Player(CircleShape):
     def draw(self, screen):
         #Draw the rocket
         pygame.draw.polygon(screen, "white", self.rocket(), 2)
+        
+        
+    def draw_fire(self, screen):
         # Draw the rocket fire
         pygame.draw.polygon(screen, "orange", self.rocket_fire())
-        return super().draw(screen)
     
 
     

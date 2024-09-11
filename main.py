@@ -37,7 +37,7 @@ def main():
 
     #setting fonts
     font = pygame.font.Font('PressStart2P-Regular.ttf', 74)
-    small_font = pygame.font.Font('PressStart2P-Regular.ttf', 30)
+    small_font = pygame.font.Font('PressStart2P-Regular.ttf', 25)
     
     #Game groups
     updatable = pygame.sprite.Group()
@@ -53,7 +53,7 @@ def main():
 
     #Create a player and spawn it to the center of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
-    player.name = prompt_user_input(screen, "Enter your name: ")
+    player.name = prompt_user_input(screen, "Enter your name: ", small_font)
     #Create asteroid field
     asteroidField = AsteroidField()
     
@@ -61,6 +61,7 @@ def main():
     clock = pygame.time.Clock() 
     dt = 0  #delta to store time since last frame in seconds
 
+    fire_active = False
     ### GAME LOOP ###
     while True:
         for event in pygame.event.get():
@@ -68,6 +69,13 @@ def main():
                 pygame.quit()
                 sys.exit()
                 return
+            if event.type == pygame.KEYDOWN:
+                if event.key in (pygame.K_UP, pygame.K_DOWN, pygame.K_w, pygame.K_s):  # Movement keys
+                    fire_active = True  # Activate fire when moving
+
+            if event.type == pygame.KEYUP:
+                if event.key in (pygame.K_UP, pygame.K_DOWN, pygame.K_w, pygame.K_s):
+                    fire_active = False  # Deactivate fire when movement stops
         
         ###Background###
         image = pygame.image.load('space_darker.jpg')
@@ -118,6 +126,10 @@ def main():
         # Draw all drawable objects to the game screen
         for obj in drawable:
             obj.draw(screen) 
+
+        # Draw fire if active
+        if fire_active:
+            player.draw_fire(screen)
         
         # Draw player lives on the screen
         lives_text = small_font.render(f"Lives: {player.num_lifes}", True, "white")

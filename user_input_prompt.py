@@ -1,11 +1,12 @@
 import pygame
+import sys
 
 # Function to prompt for user input
 def prompt_user_input(screen, prompt_text="Enter your input:", font = None):
     # Create the font inside the function if not provided
     if font is None:
         font = pygame.font.Font(None, 48)  # Default font with size 48
-        
+
     input_active = True
     user_input = ""
     prompt_surface = font.render(prompt_text, True, (255, 255, 255))  # Render prompt text
