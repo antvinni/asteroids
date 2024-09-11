@@ -111,8 +111,18 @@ class Player(CircleShape):
         #Record Player's score to file
         print(f"Your score is {self.score}!")
         with open('scores.txt', 'a') as file:
-            file.write(f"{self.name} score is {self.score}\n")
+            file.write(f"{self.name} {self.score}\n")
             print("Your score is recored in scores.txt")
 
-    def set_name(self):
-        self.name = input("Enter your name: ")
+    def record_highscore(self):
+        with open('high_score.txt', 'r+') as file:
+            content = file.read()
+            file.seek(0)
+            if not content:
+                file.write(f"{self.name} {self.score}\n")
+            else:
+                current_score = int(content.split()[1])
+        if self.score > current_score:
+            file.seek(0)
+            file.write(f"{self.name} {self.score}\n")
+            file.truncate()  # Ensure any leftover content is removed

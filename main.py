@@ -53,7 +53,10 @@ def main():
 
     #Create a player and spawn it to the center of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
+    
+    # Capture player's name
     player.name = prompt_user_input(screen, "Enter your name: ", small_font)
+    
     #Create asteroid field
     asteroidField = AsteroidField()
     
@@ -102,6 +105,7 @@ def main():
                     
                     #Record Player's score to file
                     player.record_score()
+                    player.record_highscore()
                     
                     #Gameover and retry calls
                     game_over_screen(screen)
